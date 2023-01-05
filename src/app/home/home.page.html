@@ -1,20 +1,17 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div class="container">
+    <ion-img src="../../assets/images/panda-logo.png"></ion-img>
+    <ion-grid>
+      <ion-row class="ion-margin-top ion-margin-bottom">
+        <ion-text class="">Welcome to the <ion-text color="success" class="panda-text">Panda</ion-text> app!!</ion-text>
+      </ion-row>
+      <ion-row class="ion-margin-top ion-margin-bottom">
+        <ion-button [routerLink]="['/register']">
+          <ion-icon name="arrow-forward"></ion-icon>
+        </ion-button>
+      </ion-row>
+    </ion-grid>
   </div>
+
 </ion-content>

@@ -1,0 +1,21 @@
+ion-content{
+    form{
+        ion-item{
+            ion-label{
+                z-index:4;
+                padding-left:10px;
+            }
+            ion-input{
+                --background: #d6d6ff;
+                --padding-start:10px;
+            }
+        }
+    }
+    p{
+        text-align:center;
+        font-size:14px;
+        a{
+            font-size:15px;
+        }
+    }
+}
