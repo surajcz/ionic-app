@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { Storage } from '@ionic/storage';
-// import * as CordovaSQLiteDriver from 'localforage-cordovasqlitedriver';
 
 import { LoadingController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
@@ -22,8 +21,6 @@ export class RegisterPage {
   constructor(
     public formBuilder: FormBuilder,
     private storage: Storage,
-    private loadingCtrl: LoadingController,
-    private toastController: ToastController,
     private router: Router,
     private commonService: CommonService
   ) {
@@ -85,7 +82,7 @@ export function ConfirmedValidator(
       return;
     }
 
-    if (control.value !== matchingControl.value) {
+    if (control.value != matchingControl.value) {
       matchingControl.setErrors({ confirmedValidator: true });
     } else {
       matchingControl.setErrors(null);

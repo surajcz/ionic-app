@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Storage } from '@ionic/storage';
-import { LoadingController } from '@ionic/angular';
-import { ToastController } from '@ionic/angular';
 import { CommonService } from 'src/app/services/common.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -21,9 +20,8 @@ export class LoginPage {
   constructor(
     public formBuilder: FormBuilder,
     private storage: Storage,
-    private loadingCtrl: LoadingController,
-    private toastController: ToastController,
-    public commonService: CommonService
+    public commonService: CommonService,
+    private navCtrl: NavController
   ) {
     this.loginForm = this.formBuilder.group({
       loginEmail: ['', [Validators.required]],
@@ -53,11 +51,11 @@ export class LoginPage {
       this.registerUserData.email == this.loginForm.value.loginEmail &&
       this.registerUserData.newPassword == this.loginForm.value.loginPassword
     ) {
-      console.log('if');
+      // console.log('if');
       this.storage.set('userData', JSON.stringify(this.registerUserData));
       this.commonService.hideLoader();
       this.commonService.showToast('User loggedIn Successfully!', 'success');
-      // this.storage.remove('registerUser');
+      this.navCtrl.navigateBack('/home');
     } else {
       this.commonService.hideLoader();
       if (

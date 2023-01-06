@@ -1,27 +1,25 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons>
-      <ion-back-button defaultHref="/"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Register as new user</ion-title>
+  <ion-toolbar color="primary" class="ion-justify-content-center">
+    <ion-img src="../../../assets/images/panda-logo.png"></ion-img>
+    <ion-title class="ion-align-items-center">PandaFood</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <h1 class="ion-text-center">Register As New User</h1>
 
   <form [formGroup]="registerForm" (ngSubmit)="submitForm()" novalidate>
 
     <ion-item lines="full">
       <ion-label position="floating">Full Name</ion-label>
       <ion-input formControlName="fullName" inputmode="text" type="text" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)"></ion-input>
-      <!-- <ion-note slot="helper">Enter full name</ion-note> -->
       <ion-note slot="error" *ngIf="isSubmitted && errorControl['fullName'].errors?.['required']">Full Name is required</ion-note>
     </ion-item>
 
     <ion-item lines="full">
       <ion-label position="floating">Email</ion-label>
       <ion-input formControlName="email" inputmode="email" type="email"></ion-input>
-      <!-- <ion-note slot="helper">Enter a valid email ID</ion-note> -->
       <ion-note slot="error" *ngIf="isSubmitted && errorControl['email'].errors?.['required']">Email address is required</ion-note>
       <ion-note slot="error" *ngIf="isSubmitted && errorControl['email'].errors?.['pattern']">Enter a valid email address</ion-note>
     </ion-item>
@@ -29,7 +27,6 @@
     <ion-item lines="full">
       <ion-label position="floating">Mobile Number</ion-label>
       <ion-input formControlName="mobile" inputmode="tel" type="number"></ion-input>
-      <!-- <ion-note slot="helper">Enter a mobile number</ion-note> -->
       <ion-note slot="error" *ngIf="isSubmitted && errorControl['mobile'].errors?.['required']">Mobile number is required</ion-note>
       <ion-note slot="error" *ngIf="isSubmitted && errorControl['mobile'].errors?.['pattern']">Enter a valid mobile number</ion-note>
     </ion-item>
@@ -37,7 +34,6 @@
     <ion-item lines="full" counter="true" class="ion-invalid">
       <ion-label position="floating">Password</ion-label>
       <ion-input formControlName="newPassword" inputmode="text" type="password" clearOnEdit="false"></ion-input>
-      <!-- <ion-note slot="helper">Enter a password with minimum 8 characters</ion-note> -->
       <ion-note slot="error" *ngIf="isSubmitted && errorControl['newPassword'].errors?.['required']">Password is required</ion-note>
       <ion-note slot="error" *ngIf="isSubmitted && errorControl['newPassword'].errors?.['pattern']">Atleast 8 characters required</ion-note>
     </ion-item>
@@ -45,7 +41,6 @@
     <ion-item lines="full">
       <ion-label position="floating">Confirm Password</ion-label>
       <ion-input formControlName="confirmPassword" inputmode="text" type="password" clearOnEdit="false"></ion-input>
-      <!-- <ion-note slot="helper">Re-enter the password</ion-note> -->
       <ion-note slot="error" *ngIf="isSubmitted && errorControl['confirmPassword'].errors?.['required']">Password is required</ion-note>
       <ion-note slot="error" *ngIf="isSubmitted && errorControl['confirmPassword']?.errors?.['confirmedValidator']">Passwords do not match</ion-note>
     </ion-item>
@@ -53,7 +48,6 @@
     <ion-row>
       <ion-col>
         <ion-button type="submit" expand="block" color="danger" class="ion-margin-top ion-margin-bottom">Register</ion-button>
-        <!-- [disabled]="!registerForm.valid" -->
       </ion-col>
     </ion-row>
   </form>

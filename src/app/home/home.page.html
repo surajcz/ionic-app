@@ -1,17 +1,75 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button>
+        <ion-icon name="menu"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Restaurants</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="addRestaurant()">
+        <ion-icon name="add-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content>
 
-  <div class="container">
-    <ion-img src="../../assets/images/panda-logo.png"></ion-img>
+<ion-list>
+  <ion-item *ngFor="let restaurant of restaurantList" lines="full">
     <ion-grid>
-      <ion-row class="ion-margin-top ion-margin-bottom">
-        <ion-text class="">Welcome to the <ion-text color="success" class="panda-text">Panda</ion-text> app!!</ion-text>
+      <ion-row>
+        <ion-col>
+          <div class="img-div">
+            <ion-img src="{{ restaurant.img }}"></ion-img>
+          </div>
+        </ion-col>
       </ion-row>
-      <ion-row class="ion-margin-top ion-margin-bottom">
-        <ion-button [routerLink]="['/register']">
-          <ion-icon name="arrow-forward"></ion-icon>
-        </ion-button>
+
+      <ion-row>
+        <ion-col>
+          <h3 class="margin0 name">{{ restaurant.name }}</h3>
+          <p class="margin0 l-detail name-estd">Estd. {{ restaurant.established }}</p>
+        </ion-col>
+        <ion-col size="auto">
+          <p class="margin0 rating r-detail">{{ restaurant.rating }} <ion-icon class="rating-star" name="star"></ion-icon></p>
+        </ion-col>
       </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <p class="margin0 l-detail">{{ restaurant.foodType }} <ion-icon *ngFor="let spice of restaurant.spicy" name="flame" color="danger"></ion-icon></p>
+        </ion-col>
+        <ion-col size="auto">
+          <p class="margin0 r-detail">{{ restaurant.pricing }} <ion-icon class="pricing-icon" name="people"></ion-icon></p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <p class="margin0 l-detail"><ion-icon name="pin"></ion-icon>{{ restaurant.location }}</p>
+        </ion-col>
+        <ion-col>
+          <p class="margin0 r-detail">{{ restaurant.distance }} <ion-icon class="distance-icon" name="map"></ion-icon></p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <p class="margin0 description">{{ restaurant.description }}</p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-button class="more-btn">Know more <ion-icon class="more-arrow" name="arrow-forward"></ion-icon></ion-button>
+        </ion-col>
+      </ion-row>
+
     </ion-grid>
-  </div>
+  </ion-item>
+
+</ion-list>
 
 </ion-content>
