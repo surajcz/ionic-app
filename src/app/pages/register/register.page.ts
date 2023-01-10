@@ -4,8 +4,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { Storage } from '@ionic/storage';
 
-import { LoadingController } from '@ionic/angular';
-import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { CommonService } from 'src/app/services/common.service';
 
@@ -62,7 +60,7 @@ export class RegisterPage {
       console.log(this.registerForm.value);
       this.storage.set('registerUser', JSON.stringify(this.registerForm.value));
       this.commonService.hideLoader();
-     this.router.navigate(['/login']);
+      this.router.navigate(['/login']);
     }
   }
 }

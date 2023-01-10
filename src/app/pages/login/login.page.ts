@@ -51,11 +51,10 @@ export class LoginPage {
       this.registerUserData.email == this.loginForm.value.loginEmail &&
       this.registerUserData.newPassword == this.loginForm.value.loginPassword
     ) {
-      // console.log('if');
       this.storage.set('userData', JSON.stringify(this.registerUserData));
       this.commonService.hideLoader();
-      this.commonService.showToast('User loggedIn Successfully!', 'success');
-      this.navCtrl.navigateBack('/home');
+      this.commonService.showToast('User LoggedIn Successfully!', 'success');
+      this.navCtrl.navigateRoot('/home');
     } else {
       this.commonService.hideLoader();
       if (

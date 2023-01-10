@@ -3,19 +3,81 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
-    <ion-title>Add your restaurant</ion-title>
+    <ion-title class="ion-align-items-center">PandaFood</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  <form>
-    <h1>Register your retaurant</h1>
+  <h1 class="ion-text-center">Register your restaurant</h1>
+  
+  <form [formGroup]="addRestaurantForm" (ngSubmit)="submitForm()" novalidate>
 
-    <ion-item>
-      <ion-label></ion-label>
-      <ion-input></ion-input>  
+    <ion-item lines="full">
+      <ion-label position="floating">Restaurant Name</ion-label>
+      <ion-input formControlName="name" inputmode="text" type="text"></ion-input>  
+      <ion-note slot="error" *ngIf="isSubmitted && errorControl['name'].errors?.['required']">Restaurant name is required</ion-note>
     </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Restaurant Image</ion-label>
+      <ion-input formControlName="img" inputmode="text" type="text" value="https://loremflickr.com/500/300/restaurant"></ion-input>  
+      <ion-note slot="error" *ngIf="isSubmitted && errorControl['img'].errors?.['required']">Restaurant image is required</ion-note>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Restaurant Rating</ion-label>
+      <ion-input formControlName="rating" inputmode="number" type="number"></ion-input>  
+      <ion-note slot="error" *ngIf="isSubmitted && errorControl['rating'].errors?.['required']">Restaurant rating is required</ion-note>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Established Year</ion-label>
+      <ion-input formControlName="established" inputmode="number" type="number"></ion-input>  
+      <ion-note slot="error" *ngIf="isSubmitted && errorControl['established'].errors?.['required']">Established year is required</ion-note>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Food Type Offered</ion-label>
+      <ion-input formControlName="foodType" inputmode="text" type="text" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)"></ion-input>  
+      <ion-note slot="error" *ngIf="isSubmitted && errorControl['foodType'].errors?.['required']">Food type offered is required</ion-note>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Spice Level</ion-label>
+      <ion-input formControlName="spicy" inputmode="number" type="number"></ion-input>  
+      <ion-note slot="error" *ngIf="isSubmitted && errorControl['spicy'].errors?.['required']">Spice level is required</ion-note>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Pricing Level</ion-label>
+      <ion-input formControlName="pricing" inputmode="number" type="number"></ion-input>  
+      <ion-note slot="error" *ngIf="isSubmitted && errorControl['pricing'].errors?.['required']">Pricing level is required</ion-note>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Location</ion-label>
+      <ion-input formControlName="location" inputmode="text" type="text"></ion-input>  
+      <ion-note slot="error" *ngIf="isSubmitted && errorControl['location'].errors?.['required']">Location is required</ion-note>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Distance</ion-label>
+      <ion-input formControlName="distance" inputmode="number" type="number"></ion-input>  
+      <ion-note slot="error" *ngIf="isSubmitted && errorControl['distance'].errors?.['required']">Distance is required</ion-note>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Description</ion-label>
+      <ion-input formControlName="description" inputmode="text" type="text"></ion-input>  
+      <ion-note slot="error" *ngIf="isSubmitted && errorControl['description'].errors?.['required']">Description is required</ion-note>
+    </ion-item>
+
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" expand="block" color="danger" class="ion-margin-top ion-margin-bottom">Add Restaurant</ion-button>
+      </ion-col>
+    </ion-row>
 
   </form>
 

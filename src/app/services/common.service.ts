@@ -16,9 +16,8 @@ export class CommonService {
     this.isLoading = true;
     return await this.loadingController.create().then((a) => {
       a.present().then(() => {
-        console.log('presented');
         if (!this.isLoading) {
-          a.dismiss().then(() => console.log('abort presenting'));
+          a.dismiss();
         }
       });
     });
@@ -26,9 +25,7 @@ export class CommonService {
 
   async hideLoader() {
     this.isLoading = false;
-    return await this.loadingController
-      .dismiss()
-      .then(() => console.log('dismissed'));
+    return await this.loadingController.dismiss();
   }
 
   showToast(msg: string, status: string) {

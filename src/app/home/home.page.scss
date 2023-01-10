@@ -39,15 +39,21 @@ ion-content{
   position:relative;
   top:1px;
 }
+.spicy{position: relative;top:2px;}
 .more-arrow{margin-left: 3px;}
 .pricing-icon{
   position:relative;
   top:2px;
 }
 .distance-icon{position:relative;top:3px;}
-.more-btn{float:right;}
 .description{
   font-size:14px;
-  font-weight: 500;;
+  font-weight: 500;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .name-estd{font-size:12px;}
+.edit-delete{position:relative;top:-2px;}

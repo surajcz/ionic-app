@@ -39,10 +39,10 @@
 
       <ion-row>
         <ion-col>
-          <p class="margin0 l-detail">{{ restaurant.foodType }} <ion-icon *ngFor="let spice of restaurant.spicy" name="flame" color="danger"></ion-icon></p>
+          <p class="margin0 l-detail">{{ restaurant.foodType }} <ion-icon *ngFor="let spice of restaurant.spicy" name="flame" color="danger" class="spicy"></ion-icon></p>
         </ion-col>
         <ion-col size="auto">
-          <p class="margin0 r-detail">{{ restaurant.pricing }} <ion-icon class="pricing-icon" name="people"></ion-icon></p>
+          <p class="margin0 r-detail">${{ restaurant.pricing }} for two <ion-icon class="pricing-icon" name="people"></ion-icon></p>
         </ion-col>
       </ion-row>
 
@@ -50,7 +50,7 @@
         <ion-col>
           <p class="margin0 l-detail"><ion-icon name="pin"></ion-icon>{{ restaurant.location }}</p>
         </ion-col>
-        <ion-col>
+        <ion-col size="auto">
           <p class="margin0 r-detail">{{ restaurant.distance }} <ion-icon class="distance-icon" name="map"></ion-icon></p>
         </ion-col>
       </ion-row>
@@ -59,11 +59,17 @@
         <ion-col>
           <p class="margin0 description">{{ restaurant.description }}</p>
         </ion-col>
+        <ion-col size="auto" class="ion-align-self-center ion-no-padding">
+          <ion-button fill="clear">Know more <ion-icon class="more-arrow" name="arrow-forward"></ion-icon></ion-button>
+        </ion-col>
       </ion-row>
 
       <ion-row>
         <ion-col>
-          <ion-button class="more-btn">Know more <ion-icon class="more-arrow" name="arrow-forward"></ion-icon></ion-button>
+          <ion-button expand="full"><ion-icon name="create" class="edit-delete"></ion-icon>Edit</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button expand="full" color="danger"><ion-icon name="trash" class="edit-delete"></ion-icon>Delete</ion-button>
         </ion-col>
       </ion-row>
 
