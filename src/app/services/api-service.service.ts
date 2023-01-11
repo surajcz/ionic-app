@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApiServiceService {
 
+  addRestaurantData: any;
+  sampleData: any;
   restaurantList: any[] = [
     {
       id: 1,
@@ -78,11 +81,32 @@ export class ApiServiceService {
     },
   ];
 
+  constructor(private route: ActivatedRoute) {
 
-  constructor() { }
 
+  }
+
+  ngOnInit() {
+    // async() => {
+    //   await this.route.snapshot.params['data'].then((val: any) => {
+    //   this.addRestaurantData = JSON.parse(val);
+    //   console.log(this.addRestaurantData);
+    //   });
+    // }
+  }
+
+  addRes(resData: any) {
+    this.sampleData = resData;
+    resData['img'] = 'https://loremflickr.com/500/300/bakery';
+    this.restaurantList.unshift(resData);
+  }
+
+  getData() {
+    return this.sampleData;
+  }
 
   restaurantData() {
     return this.restaurantList;
   }
+  
 }

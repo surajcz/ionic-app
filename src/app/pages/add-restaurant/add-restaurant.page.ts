@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CommonService } from 'src/app/services/common.service';
 import { NavController } from '@ionic/angular';
+import { ApiServiceService } from 'src/app/services/api-service.service';
 
 @Component({
   selector: 'app-add-restaurant',
@@ -15,7 +16,8 @@ export class AddRestaurantPage {
   constructor(
     public formBuilder: FormBuilder,
     private commonService: CommonService,
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    private apiService: ApiServiceService
   ) {
     this.addRestaurantForm = this.formBuilder.group({
       name: ['', [Validators.required]],
@@ -44,10 +46,13 @@ export class AddRestaurantPage {
       this.addRestaurantForm.markAllAsTouched();
       return;
     } else {
-      // this.commonService.showLoader();
+      this.commonService.showLoader();
       console.log(this.addRestaurantForm.value);
-      // this.commonService.hideLoader();
-      this.navCtrl.navigateForward('/home', this.addRestaurantForm.value);
+      this.commonService.hideLoader();
+      this.commonService.showToast('Restaurant added successfully', 'success');
+      this.apiService.addRes(this.addRestaurantForm.value);
+      this.navCtrl.navigateForward('/home');
+      // this.navCtrl.navigateForward(['/home', {data: JSON.stringify(this.addRestaurantForm.value)}]);
     }
   }
 
