@@ -5,21 +5,21 @@ import { ActivatedRoute } from '@angular/router';
   providedIn: 'root',
 })
 export class ApiServiceService {
-
   addRestaurantData: any;
-  sampleData: any;
-  restaurantList: any[] = [
+  oldLocal: any;
+  newLocal: any;
+  oldArray: any;
+  // newArray: any;
+  restaurantList: any;
+  oldRestaurantList: any[] = [
     {
       id: 1,
       img: 'https://loremflickr.com/500/300/coffee',
       name: 'Deux Four Cafe',
-      rating: '3.6',
-      established: new Date(2021, 5, 12),
-      foodType: 'Street Food',
-      spicy: [1, 2],
+      established: '1998',
+      cuisine: ['Street Food', 'North Indian', 'Cafe'],
       pricing: 20,
       location: 'Sector 71, Mohali',
-      distance: '3.9 km',
       description:
         'The fabric of Cutlets was born out of love and respect for these humble deli creations, met with a desire to bring quality ingredients to the table.',
     },
@@ -27,13 +27,10 @@ export class ApiServiceService {
       id: 2,
       img: 'https://loremflickr.com/500/300/shop',
       name: 'Barbeque Nation',
-      rating: '4.6',
       established: '2011',
-      foodType: 'North Indian',
-      spicy: [1, 2, 3],
+      cuisine: ['North Indian', 'South Indian', 'Mexican', 'Fast Food'],
       pricing: 100,
       location: 'Phase 5, Mohali',
-      distance: '4.9 km',
       description:
         'The authentic taste comes from family recipes and from fresh, simple and tasteful ingredients straight from home.',
     },
@@ -41,13 +38,10 @@ export class ApiServiceService {
       id: 3,
       img: 'https://loremflickr.com/500/300/cafe',
       name: 'Sir Dough Bakehouse Cafe',
-      rating: '3.6',
       established: '1989',
-      foodType: 'Cafe, Bakery',
-      spicy: [1],
+      cuisine: ['Cafe', 'Bakery', 'Desserts', 'Fast Food'],
       pricing: 20,
       location: 'Sector 73, Mohali',
-      distance: '2.6 km',
       description:
         'The fabric of Cutlets was born out of love and respect for these humble deli creations, met with a desire to bring quality ingredients to the table.',
     },
@@ -55,13 +49,10 @@ export class ApiServiceService {
       id: 4,
       img: 'https://loremflickr.com/500/300/pizza',
       name: "Amigo's Cafe",
-      rating: '4.3',
       established: '2010',
-      foodType: 'Italian, Fast Food',
-      spicy: [1, 2, 3],
+      cuisine: ['Italian', 'Fast Food', 'Cafe'],
       pricing: 50,
       location: 'Phase 3, Mohali',
-      distance: '5.7 km',
       description:
         'The authentic taste comes from family recipes and from fresh, simple and tasteful ingredients straight from home.',
     },
@@ -69,21 +60,18 @@ export class ApiServiceService {
       id: 5,
       img: 'https://loremflickr.com/500/300/bakery',
       name: 'Theobroma',
-      rating: '3.1',
       established: '2018',
-      foodType: 'Bakery, Desserts',
-      spicy: [1],
+      cuisine: ['Bakery', 'Desserts'],
       pricing: 10,
       location: 'Sector 34, Chandigarh',
-      distance: '6.0 km',
       description:
         'The fabric of Cutlets was born out of love and respect for these humble deli creations, met with a desire to bring quality ingredients to the table.',
     },
   ];
 
   constructor(private route: ActivatedRoute) {
-
-
+    this.oldLocal = localStorage.getItem('Restaurants');
+    this.restaurantList = JSON.parse(this.oldLocal);
   }
 
   ngOnInit() {
@@ -96,17 +84,18 @@ export class ApiServiceService {
   }
 
   addRes(resData: any) {
-    this.sampleData = resData;
-    resData['img'] = 'https://loremflickr.com/500/300/bakery';
-    this.restaurantList.unshift(resData);
-  }
-
-  getData() {
-    return this.sampleData;
+    resData['img'] = 'https://loremflickr.com/500/300/cooking';
+    // this.oldLocal = localStorage.getItem('Restaurants');
+    // this.oldArray = JSON.parse(this.oldLocal);
+    resData['id'] = this.restaurantList.length + 1;
+    this.restaurantList.push(resData);
+    localStorage.removeItem('Restaurants');
+    localStorage.setItem('Restaurants', JSON.stringify(this.restaurantList));
+    // this.newLocal = localStorage.getItem('Restaurants');
+    // this.restaurantList = JSON.parse(this.newLocal);
   }
 
   restaurantData() {
     return this.restaurantList;
   }
-  
 }

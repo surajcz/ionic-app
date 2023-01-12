@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CommonService } from 'src/app/services/common.service';
 import { NavController } from '@ionic/angular';
 import { ApiServiceService } from 'src/app/services/api-service.service';
+import { EventsService } from 'src/app/services/events.service';
 
 @Component({
   selector: 'app-add-restaurant',
@@ -12,23 +13,21 @@ import { ApiServiceService } from 'src/app/services/api-service.service';
 export class AddRestaurantPage {
   addRestaurantForm: FormGroup;
   isSubmitted = false;
+  maxDate: any = new Date().toISOString();
 
   constructor(
     public formBuilder: FormBuilder,
     private commonService: CommonService,
     public navCtrl: NavController,
-    private apiService: ApiServiceService
+    private apiService: ApiServiceService,
+    private eventsService:EventsService
   ) {
     this.addRestaurantForm = this.formBuilder.group({
       name: ['', [Validators.required]],
-      img: ['', [Validators.required]],
-      rating: ['', [Validators.required]],
       established: ['', [Validators.required]],
-      foodType: ['', [Validators.required]],
-      spicy: ['', [Validators.required]],
+      cuisine: ['', [Validators.required]],
       pricing: ['', [Validators.required]],
       location: ['', [Validators.required]],
-      distance: ['', [Validators.required]],
       description: ['', [Validators.required]],
     });
   }
@@ -48,12 +47,16 @@ export class AddRestaurantPage {
     } else {
       this.commonService.showLoader();
       console.log(this.addRestaurantForm.value);
-      this.commonService.hideLoader();
+      setTimeout(() => {
+        this.commonService.hideLoader();
+      }, 500);
       this.commonService.showToast('Restaurant added successfully', 'success');
       this.apiService.addRes(this.addRestaurantForm.value);
-      this.navCtrl.navigateForward('/home');
+      this.navCtrl.navigateForward(['/home']);
       // this.navCtrl.navigateForward(['/home', {data: JSON.stringify(this.addRestaurantForm.value)}]);
+      // this.eventsService.publish('restaurant', JSON.stringify(this.addRestaurantForm.value));
     }
   }
+
 
 }

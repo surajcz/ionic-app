@@ -27,25 +27,11 @@ ion-content{
   color:rgb(91, 91, 91);
   font-weight:600;
 }
-.rating{
-  background:green;
-  width:50px;
-  color:white;
-  float:right;
-  border-radius: 10px;
-  padding:2px 5px;
-}
-.rating-star{
-  position:relative;
-  top:1px;
-}
-.spicy{position: relative;top:2px;}
 .more-arrow{margin-left: 3px;}
 .pricing-icon{
   position:relative;
   top:2px;
 }
-.distance-icon{position:relative;top:3px;}
 .description{
   font-size:14px;
   font-weight: 500;
@@ -55,5 +41,5 @@ ion-content{
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.name-estd{font-size:12px;}
+.res-estd{font-size:12px;}
 .edit-delete{position:relative;top:-2px;}

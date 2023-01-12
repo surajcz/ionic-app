@@ -59,7 +59,9 @@ export class RegisterPage {
       this.commonService.showLoader();
       console.log(this.registerForm.value);
       this.storage.set('registerUser', JSON.stringify(this.registerForm.value));
-      this.commonService.hideLoader();
+      setTimeout(() => {
+        this.commonService.hideLoader();     
+      }, 500);
       this.router.navigate(['/login']);
     }
   }

@@ -3,13 +3,11 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
-    <ion-title class="ion-align-items-center">PandaFood</ion-title>
+    <ion-title class="ion-align-items-center">Add Restaurant</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
-  <h1 class="ion-text-center">Register your restaurant</h1>
   
   <form [formGroup]="addRestaurantForm" (ngSubmit)="submitForm()" novalidate>
 
@@ -17,36 +15,35 @@
       <ion-label position="floating">Restaurant Name</ion-label>
       <ion-input formControlName="name" inputmode="text" type="text"></ion-input>  
       <ion-note slot="error" *ngIf="isSubmitted && errorControl['name'].errors?.['required']">Restaurant name is required</ion-note>
+    </ion-item>  
+
+    <ion-item lines="full">
+      <ion-label>Establishment Date</ion-label>
+      <!-- <ion-datetime formControlName="established"  type="date"></ion-datetime>   -->
+      <ion-datetime-button datetime="datetime"></ion-datetime-button>
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime id="datetime" formControlName="established" presentation="date" max="{{maxDate}}" [showDefaultButtons]="true"></ion-datetime>
+        </ng-template>
+      </ion-modal>
+      <ion-note slot="error" *ngIf="isSubmitted && errorControl['established'].errors?.['required']">Established date is required</ion-note>
     </ion-item>
 
     <ion-item lines="full">
-      <ion-label position="floating">Restaurant Image</ion-label>
-      <ion-input formControlName="img" inputmode="text" type="text" value="https://loremflickr.com/500/300/restaurant"></ion-input>  
-      <ion-note slot="error" *ngIf="isSubmitted && errorControl['img'].errors?.['required']">Restaurant image is required</ion-note>
-    </ion-item>
-
-    <ion-item lines="full">
-      <ion-label position="floating">Restaurant Rating</ion-label>
-      <ion-input formControlName="rating" inputmode="number" type="number"></ion-input>  
-      <ion-note slot="error" *ngIf="isSubmitted && errorControl['rating'].errors?.['required']">Restaurant rating is required</ion-note>
-    </ion-item>
-
-    <ion-item lines="full">
-      <ion-label position="floating">Established Year</ion-label>
-      <ion-input formControlName="established" inputmode="number" type="number"></ion-input>  
-      <ion-note slot="error" *ngIf="isSubmitted && errorControl['established'].errors?.['required']">Established year is required</ion-note>
-    </ion-item>
-
-    <ion-item lines="full">
-      <ion-label position="floating">Food Type Offered</ion-label>
-      <ion-input formControlName="foodType" inputmode="text" type="text" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)"></ion-input>  
-      <ion-note slot="error" *ngIf="isSubmitted && errorControl['foodType'].errors?.['required']">Food type offered is required</ion-note>
-    </ion-item>
-
-    <ion-item lines="full">
-      <ion-label position="floating">Spice Level</ion-label>
-      <ion-input formControlName="spicy" inputmode="number" type="number"></ion-input>  
-      <ion-note slot="error" *ngIf="isSubmitted && errorControl['spicy'].errors?.['required']">Spice level is required</ion-note>
+      <ion-label>Cuisines Offered</ion-label>
+      <ion-select placeholder="Select" [multiple]="true" formControlName="cuisine">
+        <ion-select-option value="North Indian">North Indian</ion-select-option>
+        <ion-select-option value="South Indian">South Indian</ion-select-option>
+        <ion-select-option value="Fast Food">Fast Food</ion-select-option>
+        <ion-select-option value="Italian">Italian</ion-select-option>
+        <ion-select-option value="Chinese">Chinese</ion-select-option>
+        <ion-select-option value="Desserts">Desserts</ion-select-option>
+        <ion-select-option value="Bakery">Bakery</ion-select-option>
+        <ion-select-option value="Street Food">Street Food</ion-select-option>
+        <ion-select-option value="Mexican">Mexican</ion-select-option>
+        <ion-select-option value="Cafe">Cafe</ion-select-option>
+      </ion-select>
+      <ion-note slot="error" *ngIf="isSubmitted && errorControl['cuisine'].errors?.['required']">Cuisines Offered is required</ion-note>
     </ion-item>
 
     <ion-item lines="full">
@@ -60,16 +57,10 @@
       <ion-input formControlName="location" inputmode="text" type="text"></ion-input>  
       <ion-note slot="error" *ngIf="isSubmitted && errorControl['location'].errors?.['required']">Location is required</ion-note>
     </ion-item>
-
-    <ion-item lines="full">
-      <ion-label position="floating">Distance</ion-label>
-      <ion-input formControlName="distance" inputmode="number" type="number"></ion-input>  
-      <ion-note slot="error" *ngIf="isSubmitted && errorControl['distance'].errors?.['required']">Distance is required</ion-note>
-    </ion-item>
-
+    
     <ion-item lines="full">
       <ion-label position="floating">Description</ion-label>
-      <ion-input formControlName="description" inputmode="text" type="text"></ion-input>  
+      <ion-textarea formControlName="description" inputmode="text" type="text" [autoGrow]="true"></ion-textarea>  
       <ion-note slot="error" *ngIf="isSubmitted && errorControl['description'].errors?.['required']">Description is required</ion-note>
     </ion-item>
 

@@ -11,10 +11,12 @@ ion-content{
                 z-index:4;
                 padding-left:10px;
             }
-            ion-input{
+            ion-input, ion-textarea{
                 --background: #d6d6ff;
                 --padding-start:10px;
             }
         }
     }
 }
+
+ion-datetime{--background: #d6d6ff !important; color: black !important}

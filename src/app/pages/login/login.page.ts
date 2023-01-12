@@ -52,19 +52,28 @@ export class LoginPage {
       this.registerUserData.newPassword == this.loginForm.value.loginPassword
     ) {
       this.storage.set('userData', JSON.stringify(this.registerUserData));
-      this.commonService.hideLoader();
+      setTimeout(() => {
+        this.commonService.hideLoader();
+      }, 500);
+      // this.commonService.hideLoader();
       this.commonService.showToast('User LoggedIn Successfully!', 'success');
       this.navCtrl.navigateRoot('/home');
     } else {
-      this.commonService.hideLoader();
+      setTimeout(() => {
+        this.commonService.hideLoader();
+      }, 500);
       if (
         this.registerUserData.email != this.loginForm.value.loginEmail &&
         this.registerUserData.newPassword != this.loginForm.value.loginPassword
       ) {
         this.commonService.showToast('Invalid Credentials!', 'danger');
-      }else if (this.registerUserData.email != this.loginForm.value.loginEmail) {
+      } else if (
+        this.registerUserData.email != this.loginForm.value.loginEmail
+      ) {
         this.commonService.showToast('Invalid Email Address!', 'danger');
-      }else if ( this.registerUserData.newPassword != this.loginForm.value.loginPassword ) {
+      } else if (
+        this.registerUserData.newPassword != this.loginForm.value.loginPassword
+      ) {
         console.log('Pasword not match');
         this.commonService.showToast('Invalid Password!', 'danger');
       }
