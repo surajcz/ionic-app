@@ -4,6 +4,7 @@
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
     <ion-title class="ion-align-items-center">Add Restaurant</ion-title>
+    <!-- <ion-title class="ion-align-items-center" *ngIf="a var">Edit Restaurant Info</ion-title> -->
   </ion-toolbar>
 </ion-header>
 
@@ -12,14 +13,13 @@
   <form [formGroup]="addRestaurantForm" (ngSubmit)="submitForm()" novalidate>
 
     <ion-item lines="full">
-      <ion-label position="floating">Restaurant Name</ion-label>
+      <ion-label position="stacked">Restaurant Name</ion-label>
       <ion-input formControlName="name" inputmode="text" type="text"></ion-input>  
       <ion-note slot="error" *ngIf="isSubmitted && errorControl['name'].errors?.['required']">Restaurant name is required</ion-note>
     </ion-item>  
 
     <ion-item lines="full">
       <ion-label>Establishment Date</ion-label>
-      <!-- <ion-datetime formControlName="established"  type="date"></ion-datetime>   -->
       <ion-datetime-button datetime="datetime"></ion-datetime-button>
       <ion-modal [keepContentsMounted]="true">
         <ng-template>
@@ -47,19 +47,19 @@
     </ion-item>
 
     <ion-item lines="full">
-      <ion-label position="floating">Pricing Level</ion-label>
+      <ion-label position="stacked">Pricing Level</ion-label>
       <ion-input formControlName="pricing" inputmode="number" type="number"></ion-input>  
       <ion-note slot="error" *ngIf="isSubmitted && errorControl['pricing'].errors?.['required']">Pricing level is required</ion-note>
     </ion-item>
 
     <ion-item lines="full">
-      <ion-label position="floating">Location</ion-label>
+      <ion-label position="stacked">Location</ion-label>
       <ion-input formControlName="location" inputmode="text" type="text"></ion-input>  
       <ion-note slot="error" *ngIf="isSubmitted && errorControl['location'].errors?.['required']">Location is required</ion-note>
     </ion-item>
     
     <ion-item lines="full">
-      <ion-label position="floating">Description</ion-label>
+      <ion-label position="stacked">Description</ion-label>
       <ion-textarea formControlName="description" inputmode="text" type="text" [autoGrow]="true"></ion-textarea>  
       <ion-note slot="error" *ngIf="isSubmitted && errorControl['description'].errors?.['required']">Description is required</ion-note>
     </ion-item>

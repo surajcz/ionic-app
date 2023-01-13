@@ -14,13 +14,17 @@ export class AddRestaurantPage {
   addRestaurantForm: FormGroup;
   isSubmitted = false;
   maxDate: any = new Date().toISOString();
+  editMode: any = {};
+  fname = 'Suraj';
+  editStatus: any;
+  oldResData: any;
 
   constructor(
     public formBuilder: FormBuilder,
     private commonService: CommonService,
     public navCtrl: NavController,
     private apiService: ApiServiceService,
-    private eventsService:EventsService
+    private eventsService: EventsService
   ) {
     this.addRestaurantForm = this.formBuilder.group({
       name: ['', [Validators.required]],
@@ -30,6 +34,8 @@ export class AddRestaurantPage {
       location: ['', [Validators.required]],
       description: ['', [Validators.required]],
     });
+    this.editStatus = this.apiService.editStatus();
+    if (this.editStatus) {this.editForm()};
   }
 
   ngOnInit() {}
@@ -53,10 +59,21 @@ export class AddRestaurantPage {
       this.commonService.showToast('Restaurant added successfully', 'success');
       this.apiService.addRes(this.addRestaurantForm.value);
       this.navCtrl.navigateForward(['/home']);
-      // this.navCtrl.navigateForward(['/home', {data: JSON.stringify(this.addRestaurantForm.value)}]);
-      // this.eventsService.publish('restaurant', JSON.stringify(this.addRestaurantForm.value));
     }
   }
 
+  editForm() {
+    this.apiService.getResDetails().then((val: any) => {
+      this.addRestaurantForm.controls['name'].setValue(val.name);
+      this.addRestaurantForm.controls['established'].setValue(val.established);
+      this.addRestaurantForm.controls['cuisine'].setValue(val.cuisine);
+      this.addRestaurantForm.controls['pricing'].setValue(val.pricing);
+      this.addRestaurantForm.controls['location'].setValue(val.location);
+      this.addRestaurantForm.controls['description'].setValue(val.description);
+    })
 
+  }
 }
+
+// this.navCtrl.navigateForward(['/home', {data: JSON.stringify(this.addRestaurantForm.value)}]);
+// this.eventsService.publish('restaurant', JSON.stringify(this.addRestaurantForm.value));

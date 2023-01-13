@@ -62,10 +62,10 @@
 
       <ion-row>
         <ion-col>
-          <ion-button expand="full"><ion-icon name="create" class="edit-delete"></ion-icon>Edit</ion-button>
+          <ion-button expand="full" (click)="editRes(restaurant)"><ion-icon name="create" class="edit-delete"></ion-icon>Edit</ion-button>
         </ion-col>
         <ion-col>
-          <ion-button expand="full" color="danger"><ion-icon name="trash" class="edit-delete"></ion-icon>Delete</ion-button>
+          <ion-button expand="full" color="danger" (click)="deleteRes(restaurant)"><ion-icon name="trash" class="edit-delete"></ion-icon>Delete</ion-button>
         </ion-col>
       </ion-row>
 
