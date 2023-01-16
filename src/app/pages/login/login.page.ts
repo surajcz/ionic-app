@@ -16,6 +16,7 @@ export class LoginPage {
   registerUserData: any;
   emailMatch = true;
   passwordMatch = true;
+  userData: any;
 
   constructor(
     public formBuilder: FormBuilder,
@@ -34,6 +35,14 @@ export class LoginPage {
       this.registerUserData = JSON.parse(val);
       console.log(this.registerUserData);
     });
+    this.storage.get('userData').then((val) => {
+      this.userData = JSON.parse(val);
+      if (Object.keys(this.userData).length != 0) {
+        console.log(true);
+        this.navCtrl.navigateRoot('/home');
+      }
+    });
+
   }
   get loginErrorControl() {
     return this.loginForm.controls;
@@ -55,7 +64,7 @@ export class LoginPage {
       setTimeout(() => {
         this.commonService.hideLoader();
       }, 500);
-      // this.commonService.hideLoader();
+      this.storage.remove('registerUser');
       this.commonService.showToast('User LoggedIn Successfully!', 'success');
       this.navCtrl.navigateRoot('/home');
     } else {

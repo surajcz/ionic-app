@@ -3,8 +3,8 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
-    <ion-title class="ion-align-items-center">Add Restaurant</ion-title>
-    <!-- <ion-title class="ion-align-items-center" *ngIf="a var">Edit Restaurant Info</ion-title> -->
+    <ion-title class="ion-align-items-center" *ngIf="!editStatus">Add Restaurant</ion-title>
+    <ion-title class="ion-align-items-center" *ngIf="editStatus">Edit Restaurant Info</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -14,7 +14,7 @@
 
     <ion-item lines="full">
       <ion-label position="stacked">Restaurant Name</ion-label>
-      <ion-input formControlName="name" inputmode="text" type="text"></ion-input>  
+      <ion-input formControlName="name" inputmode="text" type="text" [autofocus]="true"></ion-input>  
       <ion-note slot="error" *ngIf="isSubmitted && errorControl['name'].errors?.['required']">Restaurant name is required</ion-note>
     </ion-item>  
 
@@ -66,7 +66,8 @@
 
     <ion-row>
       <ion-col>
-        <ion-button type="submit" expand="block" color="danger" class="ion-margin-top ion-margin-bottom">Add Restaurant</ion-button>
+        <ion-button type="submit" expand="block" color="danger" class="ion-margin-top ion-margin-bottom" *ngIf="!editStatus">Add Restaurant</ion-button>
+        <ion-button type="submit" expand="block" color="danger" class="ion-margin-top ion-margin-bottom" *ngIf="editStatus">Update Restaurant Info</ion-button>
       </ion-col>
     </ion-row>
 

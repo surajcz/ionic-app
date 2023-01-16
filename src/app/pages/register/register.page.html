@@ -1,12 +1,13 @@
 <ion-header>
   <ion-toolbar color="primary" class="ion-justify-content-center">
-    <ion-title class="ion-align-items-center">PandaFood</ion-title>
+    <ion-buttons>
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-align-items-center">Register As New User</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
-  <h1 class="ion-text-center">Register As New User</h1>
 
   <form [formGroup]="registerForm" (ngSubmit)="submitForm()" novalidate>
 

@@ -1,77 +1,93 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-button>
-        <ion-icon name="menu"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-title>Restaurants</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="addRestaurant()">
-        <ion-icon name="add-circle"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<ion-menu contentId="main-content">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <ion-row>
+      <ion-button fill="clear">Restaurants</ion-button>
+    </ion-row>
+    <ion-row>
+      <ion-button fill="clear">Profile</ion-button>
+    </ion-row>
+  </ion-content>
+</ion-menu>
 
-<ion-content>
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Restaurants</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="addRestaurant()">
+          <ion-icon name="add-circle"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
 
-<ion-list>
-  <ion-item *ngFor="let restaurant of restaurantList" lines="full">
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <div class="img-div">
-            <ion-img src="{{ restaurant.img }}"></ion-img>
-          </div>
-        </ion-col>
-      </ion-row>
+  <ion-content>
 
-      <ion-row>
-        <ion-col>
-          <h3 class="margin0 name">{{ restaurant.name }}</h3>
-        </ion-col>
-        <ion-col size="auto" class="ion-align-self-center">
-          <p class="margin0 r-detail res-estd">since {{ restaurant.established }}</p>
-        </ion-col>
-      </ion-row>
+  <ion-list>
+    <ion-item *ngFor="let restaurant of restaurantList" lines="full">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div class="img-div">
+              <ion-img src="{{ restaurant.img }}"></ion-img>
+            </div>
+          </ion-col>
+        </ion-row>
 
-      <ion-row>
-        <ion-col>
-          <p class="margin0 l-detail">{{ restaurant.cuisine }}</p>
-        </ion-col>
-      </ion-row>
+        <ion-row>
+          <ion-col>
+            <h3 class="margin0 name">{{ restaurant.name }}</h3>
+          </ion-col>
+          <ion-col size="auto" class="ion-align-self-center">
+            <p class="margin0 r-detail res-estd">since {{ restaurant.established }}</p>
+          </ion-col>
+        </ion-row>
 
-      <ion-row>
-        <ion-col>
-          <p class="margin0 l-detail"><ion-icon name="pin"></ion-icon>{{ restaurant.location }}</p>
-        </ion-col>
-        <ion-col size="auto">
-          <p class="margin0 r-detail">${{ restaurant.pricing }} for two <ion-icon class="pricing-icon" name="people"></ion-icon></p>
-        </ion-col>
-      </ion-row>
+        <ion-row>
+          <ion-col>
+            <p class="margin0 l-detail">{{ restaurant.cuisine }}</p>
+          </ion-col>
+        </ion-row>
 
-      <ion-row>
-        <ion-col>
-          <p class="margin0 description">{{ restaurant.description }}</p>
-        </ion-col>
-        <ion-col size="auto" class="ion-align-self-center ion-no-padding">
-          <ion-button fill="clear">Know more <ion-icon class="more-arrow" name="arrow-forward"></ion-icon></ion-button>
-        </ion-col>
-      </ion-row>
+        <ion-row>
+          <ion-col>
+            <p class="margin0 l-detail"><ion-icon name="pin" class="location-pin"></ion-icon>{{ restaurant.location }}</p>
+          </ion-col>
+          <ion-col size="auto">
+            <p class="margin0 r-detail">${{ restaurant.pricing }} for two <ion-icon class="pricing-icon" name="people"></ion-icon></p>
+          </ion-col>
+        </ion-row>
 
-      <ion-row>
-        <ion-col>
-          <ion-button expand="full" (click)="editRes(restaurant)"><ion-icon name="create" class="edit-delete"></ion-icon>Edit</ion-button>
-        </ion-col>
-        <ion-col>
-          <ion-button expand="full" color="danger" (click)="deleteRes(restaurant)"><ion-icon name="trash" class="edit-delete"></ion-icon>Delete</ion-button>
-        </ion-col>
-      </ion-row>
+        <ion-row>
+          <ion-col>
+            <p class="margin0 description">{{ restaurant.description }}</p>
+          </ion-col>
+          <ion-col size="auto" class="ion-align-self-center ion-no-padding">
+            <ion-button fill="clear">Know more <ion-icon class="more-arrow" name="arrow-forward"></ion-icon></ion-button>
+          </ion-col>
+        </ion-row>
 
-    </ion-grid>
-  </ion-item>
+        <ion-row>
+          <ion-col>
+            <ion-button expand="full" (click)="editRes(restaurant)"><ion-icon name="create" class="edit-delete"></ion-icon>Edit</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button expand="full" color="danger" (click)="deleteRes(restaurant)"><ion-icon name="trash" class="edit-delete"></ion-icon>Delete</ion-button>
+          </ion-col>
+        </ion-row>
 
-</ion-list>
+      </ion-grid>
+    </ion-item>
 
-</ion-content>
+  </ion-list>
+
+  </ion-content>
+</div>

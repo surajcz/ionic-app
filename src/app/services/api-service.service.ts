@@ -11,6 +11,9 @@ export class ApiServiceService {
   oldMaxId: any;
   canEdit = false;
   resDetails: any;
+  editIndex: any;
+  editImg: any;
+  editId: any;
 
   constructor(private route: ActivatedRoute) {
     this.oldLocal = localStorage.getItem('Restaurants');
@@ -44,16 +47,35 @@ export class ApiServiceService {
     return this.restaurantList;
   }
 
-  allowEdit = (val: any) => {
+  allowEdit = (val: any, index: any, img: any, id: any) => {
     this.canEdit = true;
     this.resDetails = val;
+    this.editIndex = index;
+    this.editImg = img;
+    this.editId = id;
+  };
+
+  editResIndex() {
+    return this.editIndex;
+  }
+  editResImg() {
+    return this.editImg;
+  }
+  editResId() {
+    return this.editId;
   }
 
   editStatus = () => {
-    return this.canEdit
+    return this.canEdit;
   };
 
-  getResDetails() {return this.resDetails}
+  editDone = () => {
+    this.canEdit = false;
+  };
+
+  getResDetails() {
+    return this.resDetails;
+  }
 }
 
 // oldRestaurantList: any[] = [

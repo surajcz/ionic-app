@@ -1,9 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-buttons>
-      <ion-back-button defaultHref="/"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Login to Panda</ion-title>
+    <ion-title>Login</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -23,7 +20,6 @@
       <ion-label position="floating">Password</ion-label>
       <ion-input formControlName="loginPassword" type="password" clearOnEdit="false"></ion-input>
       <ion-note slot="error" *ngIf="isSubmitted && loginErrorControl['loginPassword'].errors?.['required']">Password is required</ion-note>
-      <!-- <ion-note slot="error" *ngIf="passwordMatch == false">Incorrect password</ion-note> -->
     </ion-item>
 
     <ion-row>

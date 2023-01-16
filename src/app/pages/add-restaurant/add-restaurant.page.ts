@@ -4,6 +4,7 @@ import { CommonService } from 'src/app/services/common.service';
 import { NavController } from '@ionic/angular';
 import { ApiServiceService } from 'src/app/services/api-service.service';
 import { EventsService } from 'src/app/services/events.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-add-restaurant',
@@ -14,10 +15,10 @@ export class AddRestaurantPage {
   addRestaurantForm: FormGroup;
   isSubmitted = false;
   maxDate: any = new Date().toISOString();
-  editMode: any = {};
-  fname = 'Suraj';
-  editStatus: any;
+  editStatus = false;
   oldResData: any;
+  editIndex: any;
+  restaurantList: any;
 
   constructor(
     public formBuilder: FormBuilder,
@@ -35,7 +36,9 @@ export class AddRestaurantPage {
       description: ['', [Validators.required]],
     });
     this.editStatus = this.apiService.editStatus();
-    if (this.editStatus) {this.editForm()};
+    if (this.editStatus) {
+      this.editForm();
+    }
   }
 
   ngOnInit() {}
@@ -51,27 +54,63 @@ export class AddRestaurantPage {
       this.addRestaurantForm.markAllAsTouched();
       return;
     } else {
+      // this.addRestaurantForm.value['established'] = '1994-12-15T13:47:20+05:00';
+      // moment.parseZone(
+      //   this.addRestaurantForm.value['established']
+      // ).format('YYYY');
       this.commonService.showLoader();
       console.log(this.addRestaurantForm.value);
       setTimeout(() => {
         this.commonService.hideLoader();
       }, 500);
-      this.commonService.showToast('Restaurant added successfully', 'success');
-      this.apiService.addRes(this.addRestaurantForm.value);
+      if (this.editStatus) {
+        this.addRestaurantForm.value['img'] = this.apiService.editResImg();
+        this.addRestaurantForm.value['id'] = this.apiService.editResId();
+        this.editIndex = this.apiService.editResIndex();
+        this.restaurantList = this.apiService.restaurantData();
+        console.log(this.restaurantList);
+        this.restaurantList.splice(
+          this.editIndex,
+          1,
+          this.addRestaurantForm.value
+        );
+        console.log(this.restaurantList);
+        localStorage.removeItem('Restaurants');
+        localStorage.setItem(
+          'Restaurants',
+          JSON.stringify(this.restaurantList)
+        );
+        this.commonService.showToast('Restaurant info updated', 'success');
+      } else {
+        this.commonService.showToast(
+          'Restaurant added successfully',
+          'success'
+        );
+        this.apiService.addRes(this.addRestaurantForm.value);
+      }
       this.navCtrl.navigateForward(['/home']);
     }
   }
 
   editForm() {
-    this.apiService.getResDetails().then((val: any) => {
-      this.addRestaurantForm.controls['name'].setValue(val.name);
-      this.addRestaurantForm.controls['established'].setValue(val.established);
-      this.addRestaurantForm.controls['cuisine'].setValue(val.cuisine);
-      this.addRestaurantForm.controls['pricing'].setValue(val.pricing);
-      this.addRestaurantForm.controls['location'].setValue(val.location);
-      this.addRestaurantForm.controls['description'].setValue(val.description);
-    })
-
+    this.oldResData = this.apiService.getResDetails();
+    this.addRestaurantForm.controls['name'].setValue(this.oldResData.name);
+    this.addRestaurantForm.controls['established'].setValue(
+      this.oldResData.established
+    );
+    this.addRestaurantForm.controls['cuisine'].setValue(
+      this.oldResData.cuisine
+    );
+    this.addRestaurantForm.controls['pricing'].setValue(
+      this.oldResData.pricing
+    );
+    this.addRestaurantForm.controls['location'].setValue(
+      this.oldResData.location
+    );
+    this.addRestaurantForm.controls['description'].setValue(
+      this.oldResData.description
+    );
+    this.apiService.editDone();
   }
 }
 
