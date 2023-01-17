@@ -22,19 +22,10 @@ export class HomePage {
 
   ngOnInit() {
     this.restaurantList = this.apiService.restaurantData();
-    // this.displayList = [...this.restaurantList];
-//     this.restaurantList.forEach((element:any, key:any) => {
-//         console.log( moment(element.established).year(), "ele")
-//         this.restaurantList[key]['craeted_year'] = moment(element.established).year()
-//     });
-//  console.log(this.restaurantList)
-    for (let res of this.restaurantList) {
-      console.log(res.established);
-      res.established = moment(res.established).year();
-      console.log(res.established);
-    }
+    this.restaurantList.forEach((element: any, key: any) => {
+      element['created_year'] = moment(element.established).year();
+    });
     console.log(this.restaurantList);
-
   }
 
   addRestaurant() {
@@ -62,5 +53,18 @@ export class HomePage {
         );
       }
     });
+  }
+
+  toHome() {
+    this.navCtrl.navigateForward('/home');
+  }
+
+  toProfile() {
+    this.navCtrl.navigateForward('/profile');
+  }
+
+  knowMore(resObj: any) {
+    this.apiService.sendResObj(resObj);
+    this.navCtrl.navigateForward('/more-info');
   }
 }

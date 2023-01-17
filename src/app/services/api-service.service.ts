@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Storage } from '@ionic/storage';
 
 @Injectable({
   providedIn: 'root',
@@ -14,10 +15,15 @@ export class ApiServiceService {
   editIndex: any;
   editImg: any;
   editId: any;
+  userData: any;
+  moreInfoRes: any;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private storage: Storage) {
     this.oldLocal = localStorage.getItem('Restaurants');
     this.restaurantList = JSON.parse(this.oldLocal);
+    this.storage.get('userData').then((val) => {
+      this.userData = JSON.parse(val);
+    });
   }
 
   ngOnInit() {
@@ -27,6 +33,10 @@ export class ApiServiceService {
     //   console.log(this.addRestaurantData);
     //   });
     // }
+  }
+
+  getUserData() {
+    return this.userData;
   }
 
   addRes(resData: any) {
@@ -75,6 +85,14 @@ export class ApiServiceService {
 
   getResDetails() {
     return this.resDetails;
+  }
+
+  sendResObj = (val: any) => {
+    this.moreInfoRes = val;
+  }
+
+  getResObj = () => {
+    return this.moreInfoRes;
   }
 }
 

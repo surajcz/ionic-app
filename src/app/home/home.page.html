@@ -5,12 +5,18 @@
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding">
-    <ion-row>
-      <ion-button fill="clear">Restaurants</ion-button>
-    </ion-row>
-    <ion-row>
-      <ion-button fill="clear">Profile</ion-button>
-    </ion-row>
+    <ion-list>
+      <ion-menu-toggle>
+        <ion-item button>
+          <ion-icon name="fast-food" slot="start"></ion-icon>
+          <ion-label>Restaurants</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-item button (click)="toProfile()">
+        <ion-icon name="person" slot="start"></ion-icon>
+        <ion-label>Profile</ion-label>
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-menu>
 
@@ -47,7 +53,7 @@
             <h3 class="margin0 name">{{ restaurant.name }}</h3>
           </ion-col>
           <ion-col size="auto" class="ion-align-self-center">
-            <p class="margin0 r-detail res-estd">since {{ restaurant.established }}</p>
+            <p class="margin0 r-detail res-estd">since {{ restaurant.created_year }}</p>
           </ion-col>
         </ion-row>
 
@@ -71,7 +77,7 @@
             <p class="margin0 description">{{ restaurant.description }}</p>
           </ion-col>
           <ion-col size="auto" class="ion-align-self-center ion-no-padding">
-            <ion-button fill="clear">Know more <ion-icon class="more-arrow" name="arrow-forward"></ion-icon></ion-button>
+            <ion-button fill="clear" (click)="knowMore(restaurant)">Know more <ion-icon class="more-arrow" name="arrow-forward"></ion-icon></ion-button>
           </ion-col>
         </ion-row>
 

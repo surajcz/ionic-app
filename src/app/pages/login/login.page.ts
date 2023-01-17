@@ -35,14 +35,6 @@ export class LoginPage {
       this.registerUserData = JSON.parse(val);
       console.log(this.registerUserData);
     });
-    this.storage.get('userData').then((val) => {
-      this.userData = JSON.parse(val);
-      if (Object.keys(this.userData).length != 0) {
-        console.log(true);
-        this.navCtrl.navigateRoot('/home');
-      }
-    });
-
   }
   get loginErrorControl() {
     return this.loginForm.controls;

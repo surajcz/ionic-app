@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>More Info</ion-title>
+    <!-- <ion-title *ngIf="resName">{{ restaurant.name }}</ion-title> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <swiper class="banner-slides" [autoplay]="true" [loop]="true"> -->
+  <swiper class="banner-slides" [autoplay]="true" [initialSlide]="1.5" [slidesPerView]="1.5" [spaceBetween]="20" [centeredSlides]="true" [loop]="true">
+    <ng-template swiperSlide>
+      <img src="https://loremflickr.com/400/400/pastery" alt="">
+    </ng-template>
+    <ng-template swiperSlide>
+      <img src="https://loremflickr.com/400/400/kitchen" alt="">
+    </ng-template>
+    <ng-template swiperSlide>
+      <img src="https://loremflickr.com/400/400/cooking" alt="">
+    </ng-template>
+    <ng-template swiperSlide>
+      <img src="https://loremflickr.com/400/400/baking" alt="">
+    </ng-template>
+    <ng-template swiperSlide>
+      <img src="https://loremflickr.com/400/400/shop" alt="">
+    </ng-template>
+    <ng-template swiperSlide>
+      <img src="https://loremflickr.com/400/400/dining" alt="">
+    </ng-template>
+    </swiper>
+
+    <ion-segment value="details" color="dark"> 
+      <ion-segment-button value="details">
+        <ion-label>Details</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="menu">
+        <ion-label>Menu</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="events">
+        <ion-label>Events</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+</ion-content>

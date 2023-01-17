@@ -1,14 +1,16 @@
-ion-content{
-  ion-item{
-    ion-img::part(image) {
-      border-radius: 10px;
-    }
-    --border-color: var(--ion-color-primary);
-    --border-width:2px;
-    h3{
-      font-size:18px;
-      font-weight: 800;
-      text-align: left;
+div{
+  ion-content{
+    ion-item{
+      ion-img::part(image) {
+        border-radius: 10px;
+      }
+      --border-color: var(--ion-color-primary);
+      --border-width:2px;
+      h3{
+        font-size:18px;
+        font-weight: 800;
+        text-align: left;
+      }
     }
   }
 }
