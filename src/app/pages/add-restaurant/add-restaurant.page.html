@@ -14,7 +14,7 @@
 
     <ion-item lines="full">
       <ion-label position="stacked">Restaurant Name</ion-label>
-      <ion-input formControlName="name" inputmode="text" type="text" [autofocus]="true"></ion-input>  
+      <ion-input formControlName="name" inputmode="text" type="text"></ion-input>  
       <ion-note slot="error" *ngIf="isSubmitted && errorControl['name'].errors?.['required']">Restaurant name is required</ion-note>
     </ion-item>  
 

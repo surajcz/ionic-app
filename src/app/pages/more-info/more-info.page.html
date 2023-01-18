@@ -3,35 +3,45 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
-    <ion-title>More Info</ion-title>
+    <ion-title>{{ restaurant.name }}</ion-title>
     <!-- <ion-title *ngIf="resName">{{ restaurant.name }}</ion-title> -->
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <!-- <swiper class="banner-slides" [autoplay]="true" [loop]="true"> -->
-  <swiper class="banner-slides" [autoplay]="true" [initialSlide]="1.5" [slidesPerView]="1.5" [spaceBetween]="20" [centeredSlides]="true" [loop]="true">
+  <div class="sticky">
+  <swiper class="banner-slides" [config]="config" #swiperComponent>
+  <!-- <swiper class="banner-slides" [autoplay]="true" [initialSlide]="1.5" [slidesPerView]="1.5" [spaceBetween]="20" [centeredSlides]="true" [loop]="true" [navigation]="true"> -->
     <ng-template swiperSlide>
-      <img src="https://loremflickr.com/400/400/pastery" alt="">
+      <img src="../../../assets/images/sitting-area101.jpg" alt="">
     </ng-template>
     <ng-template swiperSlide>
-      <img src="https://loremflickr.com/400/400/kitchen" alt="">
+      <img src="../../../assets/images/sitting-area102.jpg" alt="">
     </ng-template>
     <ng-template swiperSlide>
-      <img src="https://loremflickr.com/400/400/cooking" alt="">
+      <img src="../../../assets/images/food101.jpg" alt="">
     </ng-template>
     <ng-template swiperSlide>
-      <img src="https://loremflickr.com/400/400/baking" alt="">
+      <img src="../../../assets/images/sitting-area103.jpg" alt="">
     </ng-template>
     <ng-template swiperSlide>
-      <img src="https://loremflickr.com/400/400/shop" alt="">
+      <img src="../../../assets/images/show101.jpg" alt="">
+    </ng-template>
+    <ng-template swiperSlide>
+      <img src="../../../assets/images/show102.jpg" alt="">
+    </ng-template>
+    <ng-template swiperSlide>
+      <img src="../../../assets/images/food102.jpg" alt="">
+    </ng-template>
+    <ng-template swiperSlide>
+      <img src="../../../assets/images/coffee-cups.jpg" alt="">
     </ng-template>
     <ng-template swiperSlide>
       <img src="https://loremflickr.com/400/400/dining" alt="">
     </ng-template>
     </swiper>
 
-    <ion-segment value="details" color="dark"> 
+    <ion-segment value="details" [(ngModel)]="segment"> 
       <ion-segment-button value="details">
         <ion-label>Details</ion-label>
       </ion-segment-button>
@@ -42,4 +52,61 @@
         <ion-label>Events</ion-label>
       </ion-segment-button>
     </ion-segment>
+    </div>
+
+    <div [ngSwitch]="segment">
+      <ion-card *ngSwitchCase="'details'">
+        <ion-card-header>
+          Know more about <ion-text>{{ restaurant.name }}</ion-text>
+        </ion-card-header>
+        <ion-card-content>
+          {{ restaurant.description }}
+        </ion-card-content>
+      </ion-card>
+  
+      <ion-card *ngSwitchCase="'menu'">
+        <ion-card-header>
+          Dishes prepared by renowned chefs.
+        </ion-card-header>
+        <ion-card-content>
+          <ion-list>
+            <ion-item lines="full" *ngFor="let item of menuItems">
+              <ion-grid>
+              <ion-row>
+                <ion-col>{{ item.dish }}</ion-col>
+                <ion-col size="auto" class="ion-text-right">$ {{ item.price }}</ion-col>
+              </ion-row>
+              </ion-grid>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+  
+      <ion-card *ngSwitchCase="'events'">
+        <ion-card-header>
+          Come experience our ambience !
+        </ion-card-header>
+        <ion-card-content>
+          <ion-list>
+            <ion-item-group *ngFor="let item of eventList">
+              <ion-item-divider>
+                <ion-label>
+                  {{ item.day }}
+                </ion-label>
+              </ion-item-divider>
+          
+              <ion-item lines="full" *ngFor="let show of item.events">
+                <ion-grid>
+                  <ion-row>
+                    <ion-col>{{ show.event }}</ion-col>
+                    <ion-col size="auto" class="ion-text-right">{{ show.time }}</ion-col>
+                  </ion-row>
+                  </ion-grid>
+              </ion-item>
+            </ion-item-group>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
 </ion-content>

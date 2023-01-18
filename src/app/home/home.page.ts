@@ -55,9 +55,9 @@ export class HomePage {
     });
   }
 
-  toHome() {
-    this.navCtrl.navigateForward('/home');
-  }
+  // toHome() {
+  //   this.navCtrl.navigateForward('/home');
+  // }
 
   toProfile() {
     this.navCtrl.navigateForward('/profile');
