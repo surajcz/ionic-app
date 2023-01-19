@@ -45,8 +45,8 @@
       <ion-segment-button value="details">
         <ion-label>Details</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="menu">
-        <ion-label>Menu</ion-label>
+      <ion-segment-button value="Cuisines">
+        <ion-label>Cuisines</ion-label>
       </ion-segment-button>
       <ion-segment-button value="events">
         <ion-label>Events</ion-label>
@@ -64,22 +64,17 @@
         </ion-card-content>
       </ion-card>
   
-      <ion-card *ngSwitchCase="'menu'">
-        <ion-card-header>
-          Dishes prepared by renowned chefs.
-        </ion-card-header>
-        <ion-card-content>
-          <ion-list>
-            <ion-item lines="full" *ngFor="let item of menuItems">
-              <ion-grid>
-              <ion-row>
-                <ion-col>{{ item.dish }}</ion-col>
-                <ion-col size="auto" class="ion-text-right">$ {{ item.price }}</ion-col>
-              </ion-row>
-              </ion-grid>
-            </ion-item>
-          </ion-list>
-        </ion-card-content>
+      <ion-card *ngSwitchCase="'Cuisines'">
+        <ion-list>
+          <ion-item lines="full" *ngFor="let item of menuItems">
+            <ion-grid>
+            <ion-row>
+              <ion-col>{{ item.dish }}</ion-col>
+              <ion-col size="auto" class="ion-text-right">$ {{ item.price }}</ion-col>
+            </ion-row>
+            </ion-grid>
+          </ion-item>
+        </ion-list>
       </ion-card>
   
       <ion-card *ngSwitchCase="'events'">

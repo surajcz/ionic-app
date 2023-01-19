@@ -1,19 +1,26 @@
-div{
-  ion-content{
-    ion-item{
-      ion-img::part(image) {
-        border-radius: 10px;
-      }
-      --border-color: var(--ion-color-primary);
-      --border-width:2px;
-      h3{
-        font-size:18px;
-        font-weight: 800;
-        text-align: left;
-      }
+ion-content{
+  ion-card{
+    border-radius:0;
+    box-shadow: 0 0 20px #999;
+    --border-color: var(--ion-color-primary);
+    --border-width:2px;
+    h3{
+      font-size:18px;
+      font-weight: 800;
+      text-align: left;
+    }
+    .more-btn{
+      font-size: 14px;
+    }
+    ion-button{
+      margin:0;
+      height:none;
+      // padding-block:5px;
+      --border-radius: 0 8px 8px 0 !important;
     }
   }
 }
+
 
 
 .margin0{margin:0}
@@ -44,5 +51,6 @@ div{
   text-overflow: ellipsis;
 }
 .res-estd{font-size:12px;}
-.location-pin{position:relative; top:2px;}
-.edit-delete{position:relative;top:-2px;}
+.location-pin{position:relative; top:2px; font-size: 14px;}
+.edit-del-btn{font-size: 14px;}
+.edit-del-icon{font-size:16px;position:relative;top:-1px;}

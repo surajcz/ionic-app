@@ -1,52 +1,23 @@
-<ion-menu contentId="main-content">
-  <ion-header>
-    <ion-toolbar color="primary">
-      <ion-title>Menu</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content class="ion-padding">
-    <ion-list>
-      <ion-menu-toggle>
-        <ion-item button>
-          <ion-icon name="fast-food" slot="start"></ion-icon>
-          <ion-label>Restaurants</ion-label>
-        </ion-item>
-      </ion-menu-toggle>
-      <ion-item button (click)="toProfile()">
-        <ion-icon name="person" slot="start"></ion-icon>
-        <ion-label>Profile</ion-label>
-      </ion-item>
-    </ion-list>
-  </ion-content>
-</ion-menu>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Restaurants</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="addRestaurant()">
+        <ion-icon name="add-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 
-<div class="ion-page" id="main-content">
-  <ion-header>
-    <ion-toolbar color="primary">
-      <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-title>Restaurants</ion-title>
-      <ion-buttons slot="end">
-        <ion-button (click)="addRestaurant()">
-          <ion-icon name="add-circle"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
-
-  <ion-content>
+<ion-content>
 
   <ion-list>
-    <ion-item *ngFor="let restaurant of restaurantList" lines="full">
+    <ion-card *ngFor="let restaurant of restaurantList" lines="full">
+      <ion-img src="{{ restaurant.img }}"></ion-img>
       <ion-grid>
-        <ion-row>
-          <ion-col>
-            <div class="img-div">
-              <ion-img src="{{ restaurant.img }}"></ion-img>
-            </div>
-          </ion-col>
-        </ion-row>
 
         <ion-row>
           <ion-col>
@@ -77,23 +48,24 @@
             <p class="margin0 description">{{ restaurant.description }}</p>
           </ion-col>
           <ion-col size="auto" class="ion-align-self-center ion-no-padding">
-            <ion-button fill="clear" (click)="knowMore(restaurant)">Know more <ion-icon class="more-arrow" name="arrow-forward"></ion-icon></ion-button>
-          </ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col>
-            <ion-button expand="full" (click)="editRes(restaurant)"><ion-icon name="create" class="edit-delete"></ion-icon>Edit</ion-button>
-          </ion-col>
-          <ion-col>
-            <ion-button expand="full" color="danger" (click)="deleteRes(restaurant)"><ion-icon name="trash" class="edit-delete"></ion-icon>Delete</ion-button>
+            <ion-button fill="clear" (click)="knowMore(restaurant)" class="more-btn">Know more <ion-icon class="more-arrow" name="arrow-forward"></ion-icon></ion-button>
           </ion-col>
         </ion-row>
 
       </ion-grid>
-    </ion-item>
+
+        <ion-row>
+          <ion-col class="ion-no-padding">
+            <ion-button expand="full" (click)="editRes(restaurant)" class="edit-del-btn ion-no-padding"><ion-icon name="create" class="edit-del-icon"></ion-icon>Edit</ion-button>
+          </ion-col>
+          <ion-col class="ion-no-padding">
+            <ion-button expand="full" color="danger" (click)="deleteRes(restaurant)" class="edit-del-btn ion-no-padding"><ion-icon name="trash" class="edit-del-icon"></ion-icon>Delete</ion-button>
+          </ion-col>
+        </ion-row>
+
+
+    </ion-card>
 
   </ion-list>
 
-  </ion-content>
-</div>
+</ion-content>

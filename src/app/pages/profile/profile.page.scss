@@ -1,18 +1,14 @@
-div{
-    ion-content{
-        ion-list{
-            ion-item{
-            
-            }
-            ion-avatar{
-                margin: 20px auto;
-                height:100% !important;
-                width:100% !important;
-                max-height: 100px !important;
-                max-width: 100px !important;
-            }
+ion-content{
+    ion-list{
+        ion-avatar{
+            margin: 20px auto;
+            height:100% !important;
+            width:100% !important;
+            max-height: 100px !important;
+            max-width: 100px !important;
         }
     }
 }
+
 
 .margin0auto{margin:0 auto;}
